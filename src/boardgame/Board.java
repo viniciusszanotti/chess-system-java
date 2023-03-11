@@ -59,6 +59,20 @@ public class Board {
 		piece.position = position;//".position" é acessível pois está no mesmo pacote que a classe "Piece"
 
 	}
+	
+	public Piece removePiece(Position position) {
+		if (!positionExists(position)) { //programação defensiva
+			throw new BoardException("Position not on the board");
+		} 
+		if(piece(position) == null) { //se a peça do tabuleiro nessa posição == nulo, não tem nenhuma peça nessa posição
+			return null;
+		}
+		Piece aux = piece(position); //declarando uma variável do tipo Piece recebendo a peça que estiver nessa posição do tabuleiro
+		aux.position = null; //posição dessa peça agora é nula, ou seja, foi retidada do tabuleiro
+		pieces[position.getRow()][position.getColumn()] = null;
+		return aux;
+	}
+	
 		
 	private boolean positionExists(int row, int column) {
 		//verificando se uma posição em uma dada linha e coluna existe
