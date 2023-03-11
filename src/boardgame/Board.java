@@ -40,5 +40,18 @@ public class Board {
 	public Piece piece(Position position) {
 		return pieces[position.getRow()][position.getColumn()];
 	}
+	
+	
+	//método responsável por colocar uma peça em uma determinada posição
+	
+	public void placePiece(Piece piece, Position position) {
+		//atribuir a peça que veio como argumento na matriz de peças do tabuleiro
+		pieces[position.getRow()][position.getColumn()] = piece;
+		
+		//agora a peça não está mais na posição nula, mas sim na posição "position"
+		piece.position = position;//".position" é acessível pois está no mesmo pacote que a classe "Piece"
+		
+		
+	}
 			
 }
