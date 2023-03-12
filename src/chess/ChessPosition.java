@@ -31,7 +31,7 @@ public class ChessPosition {
 	
 	// # e sublinhada -> protected static
 	protected static ChessPosition fromPosition(Position position) {//método deve retornar a fórmula inversa da anterior
-		return new ChessPosition((char)('a' - position.getColumn()), 8 - position.getRow());//no xadrez primeiro é falado a coluna e depois a linha
+		return new ChessPosition((char)('a' + position.getColumn()), 8 - position.getRow());//no xadrez primeiro é falado a coluna e depois a linha
 		/*casting para char pois a conversão não é automática*/
 	}
 	
