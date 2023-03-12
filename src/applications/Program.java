@@ -21,7 +21,7 @@ public class Program {
 				
 				// UI = User Interface
 				UI.clearScreen();
-				UI.printBoard(chessMatch.getPieces()); // receber a matriz de peças da minha partida
+				UI.printMatch(chessMatch); // receber a matriz de peças da minha partida
 				System.out.println();
 				System.out.print("Source: "); //ler a posição de origem
 				ChessPosition source = UI.readChessPosition(sc);

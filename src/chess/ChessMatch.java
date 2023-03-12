@@ -8,13 +8,26 @@ import chess.pieces.Rook;
 
 public class ChessMatch {
 	
+	private int turn;
+	private Color currentPlayer;
 	private Board board;
 	
 	public ChessMatch() {//na hora que for criado a partida o método irá:
 		//criar um tabuleiro 8x8 e chamar o initialSetup()
 		board = new Board (8,8);
+		turn = 1;
+		currentPlayer = Color.WHITE;
 		initialSetup();
 	}
+	
+	public int getTurn() {
+		return turn;
+	}
+	
+	public Color getCurrentPlayer() {
+		return currentPlayer;
+	}
+	
 	
 	public ChessPiece[][] getPieces(){ //deve retornar uma matriz de peças de xadrez correspondete à esa partida
 		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
@@ -46,6 +59,7 @@ public class ChessMatch {
 		validateSourcePosition(source);
 		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
+		nextTurn();
 		return (ChessPiece)capturedPiece;//downcasting para ChessPiece pq essa peça era do tipo Piece
 	}
 	
@@ -62,6 +76,9 @@ public class ChessMatch {
 		if (!board.thereIsAPiece(position)){//se não existir uma peça nessa posição, então:
 			throw new ChessException("There is no piece on source position");
 		}
+		if (currentPlayer != ((ChessPiece)board.piece(position)).getColor()) {//faz o downcast da peça nessa posição para ChessPiece e testa a cor dela
+			throw new ChessException("The chosen piece is not yours");
+		}
 		if (!board.piece(position).isThereAnyPossibleMove()) {//se não tiver nenhum movimento possível...
 			throw new ChessException("There is no possible moves for the chosen piece");
 		}
@@ -73,6 +90,11 @@ public class ChessMatch {
 		}
 	}
 	
+	private void nextTurn() {
+		turn++;
+		//expressão condicional ternária:
+		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE; 
+	}
 	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {//operação de colocar peça passando as posições nas coordenadas do xadrez
 		
