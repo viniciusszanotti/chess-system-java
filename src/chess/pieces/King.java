@@ -14,4 +14,12 @@ public class King extends ChessPiece{
 	public String toString() {
 		return "K";
 	}
+
+	@Override
+	public boolean[][] possibleMoves() {
+		//criar uma matriz de booleanos com a mesma dimensão do tabuleiro
+		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
+		
+		return mat;
+	}
 }
