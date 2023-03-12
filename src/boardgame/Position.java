@@ -31,6 +31,11 @@ public class Position {
 		this.column = column;
 	}
 	
+	public void setValue(int row, int column) { //operação para atualizar os valores de uma posição
+		this.row = row;
+		this.column = column;
+	}
+	
 	@Override
 	public String toString() {
 		return row + ", " + column;
