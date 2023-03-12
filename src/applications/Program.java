@@ -19,7 +19,7 @@ public class Program {
 		List<ChessPiece> captured = new ArrayList<>();
 		
 		
-		while(true) {
+		while (!chessMatch.getCheckMate()) {//programa irá rodar enquanto não acontecer um check mate
 			try {
 				
 				// UI = User Interface
@@ -52,6 +52,8 @@ public class Program {
 				sc.nextLine();
 			}
 		}
+		UI.clearScreen();
+		UI.printMatch(chessMatch, captured);;
 		
 	}	
 
